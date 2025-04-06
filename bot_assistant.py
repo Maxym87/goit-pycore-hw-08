@@ -128,6 +128,7 @@ def add_contact(args, book: AddressBook):
         book.add_record(record)
         message = "Контакт додано."
     record.add_phone(phone)
+    save_data(book)
     return message
 
 
@@ -197,7 +198,7 @@ def parse_input(user_input):
 
 
 def main():
-    book = AddressBook()
+    book = load_data()
     print("Вас вітає бот-асистент!")
 
     while True:
@@ -205,6 +206,7 @@ def main():
         command, args = parse_input(user_input_str)
 
         if command in ["close", "exit"]:
+            save_data(book)
             print("До побачення!")
             break
 
